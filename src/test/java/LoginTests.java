@@ -1,27 +1,33 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pagefactory.HomePage;
+import pagefactory.LoginPage;
 
-import java.time.Duration;
 
 public class LoginTests extends BaseTest {
+
+    //Fluent interfaces example
     @Test
-    public void loginEmptyEmailPassword() {
+    public void loginValidEmailPassword () {
 
-//      Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        loginPage.provideEmail("demo@testpro.io").providePassword("te$t$tudent").clickSubmit();
 
-        // TODO (for students): Review the configuration as part of HW15
-        
-        String url = "https://testpro.io/";
-        driver.get(url);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
-        driver.quit();
+        Assert.assertTrue(homePage.isAvatarDisplayed());
     }
+
+    //    OR
+    @Test
+    public void loginEmptyEmailPassword() throws InterruptedException {
+
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.provideEmail("").providePassword("te$t$tudent").clickSubmit();
+
+        Thread.sleep(2000);
+        Assert.assertEquals(driver.getCurrentUrl(), url);
+    }
+
 }
