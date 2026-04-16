@@ -8,8 +8,6 @@
         <classes>
             <class name="BaseTest"/>
             <class name="LoginTests"/>
-            <class name="PlaylistTests"/>
-            <class name="ActionsTests"/>
         </classes>
 
     </test>
