@@ -149,6 +149,7 @@ public class BaseTest {
         return new RemoteWebDriver(new URL(hubURL), browserOptions);
     }
 
+
     public WebDriver lambdaTestFireFox(Method method) throws MalformedURLException{
         String hubURL = "https://hub.lambdatest.com/wd/hub";
 
