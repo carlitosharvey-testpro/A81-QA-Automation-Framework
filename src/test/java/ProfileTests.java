@@ -1,13 +1,13 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pagefactory.ProfilePage;
 import pagefactory.HomePage;
 import pagefactory.LoginPage;
+import pagefactory.ProfilePage;
 
-public class ProfileTests extends BaseTest{
+public class ProfileTests extends BaseTest {
 
     @Test
-    public void changeCurrentTheme(){
+    public void changeCurrentTheme() {
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
         ProfilePage profilePage = new ProfilePage(getDriver());
