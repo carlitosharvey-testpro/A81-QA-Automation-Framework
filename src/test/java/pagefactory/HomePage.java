@@ -13,11 +13,19 @@ public class HomePage extends BasePage {
     @FindBy(css = "[name='name']")
     WebElement playlistNameField;
 
+    @FindBy(css="a.view-profile")
+    WebElement profileIcon;
+
     @FindBy(css = "div.success.show")
     WebElement popUpNotification;
 
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
+    }
+
+    public HomePage clickProfileIcon(){
+        click(profileIcon);
+        return this;
     }
 
     //Fluent interface

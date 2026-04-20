@@ -10,8 +10,8 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginValidEmailPassword () {
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("carlitos@testpro.io").providePassword("4IJkPyka").clickSubmit();
 
@@ -22,12 +22,12 @@ public class LoginTests extends BaseTest {
     @Test
     public void loginEmptyEmailPassword() throws InterruptedException {
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
 
         loginPage.provideEmail("").providePassword("te$t$tudent").clickSubmit();
 
         Thread.sleep(2000);
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertEquals(getDriver().getCurrentUrl(), url);
     }
 
 }
