@@ -54,7 +54,7 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"BaseURL"})
-    public void launchBrowser(String BaseURL, Method method) throws MalformedURLException {
+    public void launchBrowser(String BaseURL) throws MalformedURLException {
         //      Added ChromeOptions argument below to fix websocket error
         //ChromeOptions options = new ChromeOptions();
         //options.addArguments("--remote-allow-origins=*");
@@ -62,7 +62,7 @@ public class BaseTest {
         //driver = new ChromeDriver(options);
         //driver = new FirefoxDriver();
         //driver = new SafariDriver();
-        threadDriver.set(pickBrowser(System.getProperty("browser"), method));
+        threadDriver.set(pickBrowser(System.getProperty("browser")));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         getDriver().manage().window().maximize();
 
@@ -86,7 +86,7 @@ public class BaseTest {
         getDriver().get(url);
     }
 
-    public WebDriver pickBrowser(String browser, Method method) throws MalformedURLException {
+    public WebDriver pickBrowser(String browser) throws MalformedURLException {
         //DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://localhost:4444";
 
@@ -114,10 +114,10 @@ public class BaseTest {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 return driver = new RemoteWebDriver(URI.create(gridURL).toURL(), chromeOptions);
             // Cloud Execution
-            case "cloud-chrome":
-                return lambdaTest(method);
-            case "cloud-firefox":
-                return lambdaTestFireFox(method);
+            //case "cloud-chrome":
+            //    return lambdaTest(method);
+            //case "cloud-firefox":
+            //    return lambdaTestFireFox(method);
             default:
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions browserOptions = new ChromeOptions();
